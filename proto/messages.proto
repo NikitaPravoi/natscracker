@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package events;
+option go_package = "pkg/pb";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/any.proto";
+
+// BaseEvent represents the common structure for all events
+message BaseEvent {
+ // Id is generated on the on
+  string id = 1;
+ // Type must be exact the same as the subject name, eg. "user.created"
+  string type = 2;
+ // Timestamp to identify when message was created, helps when it needs to how long message was waiting to be processed
+  google.protobuf.Timestamp timestamp = 3;
+ // Payload is any proto message you assume it to be
+  google.protobuf.Any payload = 4;
+}
